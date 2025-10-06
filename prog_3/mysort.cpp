@@ -6,15 +6,14 @@ using namespace std;
 
 void bubble(vector<int>& v){
 	bool swapped;
-	for(int i = 0; i < v.size(); i++){
+	int n = v.size();
+	for(int i = 0; i < n; i++){
 		swapped = false;
 
-		for(int j = 0; j < v.size() - 1 - i; j++){
-			if(v.at(j) > v.at(j + 1)){
+		for(int j = 0; j < n - 1 - i; j++){
+			if(v[j] > v[j+1]){
 				swapped = true;
-				int hold = v.at(j);
-				v.at(j) = v.at(j + 1);
-				v.at(j + 1) = hold;
+				swap(v[j], v[j+1]);
 			}
 		}
 
@@ -32,6 +31,7 @@ int main(int argc, char** argv){
 
 	string s;
 	vector<int> nums;
+	nums.reserve(1000000);
 	while(getline(inputFile, s)){
 		nums.push_back(stoi(s));
 
@@ -39,8 +39,9 @@ int main(int argc, char** argv){
 	bubble(nums);
 	
 	ofstream outputFile(argv[2]);
-	for(int i = 0; i < nums.size(); i++){
-		outputFile << nums.at(i) << endl;
+	n = nums.size();
+	for(int i = 0; i < n; i++){
+		outputFile << nums[i] << endl;
 	}
 	
 	
